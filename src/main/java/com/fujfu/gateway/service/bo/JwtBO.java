@@ -11,6 +11,6 @@ import lombok.Setter;
 @Setter
 public class JwtBO {
 
-    private String name;
+    private String userId;
     private String mobile;
 }

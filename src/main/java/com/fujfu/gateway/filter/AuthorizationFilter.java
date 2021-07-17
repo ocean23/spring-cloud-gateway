@@ -28,10 +28,10 @@ public class AuthorizationFilter implements GlobalFilter, Ordered {
 
     private final JwtService jwtService;
     private final AntPathMatcher antPathMatcher = new AntPathMatcher();
-    private final String LOGIN_URL = "/auth/login";
+    private final String LOGIN_URL = "/spring-cloud-frontend/auth/login";
     private static final String JWT_HEADER_NAME = "X-User-Token";
     private static final String MOBILE_KEY = "mobile";
-    private static final String NAME_KEY = "name";
+    private static final String USER_ID_KEY = "userId";
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
@@ -59,10 +59,10 @@ public class AuthorizationFilter implements GlobalFilter, Ordered {
         if (jwtValid) {
             JwtBO fJwtBO = jwtBO;
             request.mutate().headers(httpHeaders -> {
+                httpHeaders.remove(USER_ID_KEY);
                 httpHeaders.remove(MOBILE_KEY);
-                httpHeaders.remove(NAME_KEY);
                 httpHeaders.add(MOBILE_KEY, fJwtBO.getMobile());
-                httpHeaders.add(NAME_KEY, fJwtBO.getName());
+                httpHeaders.add(USER_ID_KEY, fJwtBO.getUserId());
             }).build();
             exchange.mutate().request(request).build();
             return chain.filter(exchange);

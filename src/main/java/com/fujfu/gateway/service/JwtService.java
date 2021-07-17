@@ -44,7 +44,7 @@ public class JwtService {
         }
         JwtBO jwtBO = new JwtBO();
         Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
-        jwtBO.setName(claims.getSubject());
+        jwtBO.setUserId(claims.getSubject());
         jwtBO.setMobile(String.valueOf(claims.get(MOBILE)));
         return jwtBO;
     }
