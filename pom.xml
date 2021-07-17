@@ -15,6 +15,7 @@
     <description>spring-cloud-gateway</description>
     <properties>
         <java.version>11</java.version>
+        <jjwt.version>0.9.1</jjwt.version>
         <spring-cloud.version>2020.0.3</spring-cloud.version>
         <logstash-logback-encoder.version>6.6</logstash-logback-encoder.version>
         <apollo.version>1.7.0</apollo.version>
@@ -66,6 +67,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${jjwt.version}</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
